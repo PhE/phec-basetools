@@ -14,4 +14,5 @@ tmux new-session -d -s ffmpeg-netcam \
         -threads 0 -f v4l2 /dev/video0
 
 # Start appear.in session
-google-chrome --new-window --fullscreen https://appear.in/phec
+#google-chrome --new-window --fullscreen https://appear.in/phec
+google-chrome --kiosk https://appear.in/phec
