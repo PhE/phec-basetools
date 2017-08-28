@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Create empty webcam
+sudo modprobe v4l2loopback
+
+# Kill existing webcam streaming is exists
+#tmux has-session -t ffmpeg-netcam \ ||
+tmux kill-session -t ffmpeg-netcam
+
+# Create webcam streaming
+tmux new-session -d -s ffmpeg-netcam \
+    ffmpeg -i rtsp://@192.168.200.21:554/live/av0 \
+        -vcodec rawvideo -pix_fmt yuv420p \
+        -threads 0 -f v4l2 /dev/video0
+
+# Start appear.in session
+google-chrome --new-window --fullscreen https://appear.in/phec
